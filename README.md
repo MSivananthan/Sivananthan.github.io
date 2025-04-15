@@ -65,7 +65,7 @@ To personalize this portfolio:
 ## Live Demo
 
 Check out the live version of this portfolio at:  
-[msivananthan.github.io/portfolio](https://msivananthan.github.io/portfolio)
+[msivananthan.github.io/portfolio](https://msivananthan.github.io/Sivananthan.github.io/)
 
 ## License
 
