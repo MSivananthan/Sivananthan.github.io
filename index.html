@@ -39,7 +39,7 @@
         }
 
         body {
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
             overflow-x: hidden;
@@ -257,7 +257,7 @@
         .section-title {
             text-align: center;
             margin-bottom: 70px;
-            font-family: 'Playfair Display', serif;
+            font-family: 'Poppins', sans-serif;
             font-size: 3rem;
             color: var(--text-color);
             position: relative;
@@ -349,19 +349,78 @@
             font-weight: 400;
             color: var(--text-color);
         }
+        #role-title {
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+    color: var(--text-color);
+    animation: fadeInDown 1s ease 0.2s forwards;
+    opacity: 0;
+    font-weight: 400;
+    position: relative;
+    height: 2.5rem; /* Fixed height to prevent layout shift */
+    overflow: hidden;
+}
+
+.role-text {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    left: 0;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.role-text.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.role-text.inactive {
+    opacity: 0;
+    transform: translateY(-20px);
+}
 
         .home-content p {
-            font-size: 1.2rem;
-            margin-bottom: 40px;
-            color: rgba(255, 255, 255, 0.7);
-            animation: fadeInDown 1s ease 0.4s forwards;
-            opacity: 0;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-            transition: var(--transition);
-            color: var(--text-color);
-        }
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+    color: rgba(255, 255, 255, 0.7);
+    animation: fadeInDown 1s ease 0.4s forwards;
+    opacity: 0;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    transition: var(--transition);
+    color: var(--text-color);
+    position: relative;
+    height: auto; /* Changed from fixed height to auto */
+    min-height: 120px; /* Minimum height to prevent layout shifts */
+    overflow: visible; /* Changed from hidden to visible */
+}
+
+        .rotating-text {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: all 0.8s ease;
+    top: 0;
+    left: 0;
+    padding: 10px 0; /* Add some padding */
+}
+
+        .rotating-text.active {
+    opacity: 1;
+    transform: translateX(0);
+    position: relative; /* Change to relative when active */
+}
+
+.rotating-text.inactive {
+    opacity: 0;
+    transform: translateX(100%);
+    position: absolute; /* Keep absolute when inactive */
+}
 
         .cta-buttons {
             display: flex;
@@ -568,7 +627,7 @@
         }
 
         .about-content h3 {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Poppins', sans-serif;
             font-size: 2.5rem;
             margin-bottom: 25px;
             color: var(--text-color);
@@ -624,6 +683,158 @@
             background: var(--primary);
             transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(108, 99, 255, 0.3);
+        }
+
+        /* Services Section - Timeline Style */
+        #services {
+            position: relative;
+        }
+
+        #services::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(108, 99, 255, 0.1), transparent 70%);
+            z-index: -1;
+            border-radius: 50%;
+            filter: blur(30px);
+        }
+
+        .services-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 50px;
+            position: relative;
+        }
+
+        .services-intro p {
+            font-size: 1.2rem;
+            color: var(--text-color);
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+
+        .services-timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 0;
+        }
+
+        .services-timeline::before {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+            border-radius: 10px;
+        }
+
+        .service-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .service-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .service-item::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            background: var(--dark);
+            border: 4px solid var(--primary);
+            border-radius: 50%;
+            top: 15px;
+            z-index: 1;
+            box-shadow: 0 0 0 4px rgba(108, 99, 255, 0.2);
+        }
+
+        .service-left {
+            left: 0;
+        }
+
+        .service-right {
+            left: 50%;
+        }
+
+        .service-left::after {
+            right: -12px;
+        }
+
+        .service-right::after {
+            left: -12px;
+        }
+
+        .service-content {
+            padding: 30px;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--glass-border);
+            transition: var(--transition);
+            transform-style: preserve-3d;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s ease;
+        }
+
+        .service-content:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        .service-content:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-content h3 {
+            margin-bottom: 15px;
+            color: var(--text-color);
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .service-content h3 i {
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        .service-content p {
+            margin-bottom: 15px;
+            color: var(--text-color);
+            position: relative;
+            opacity: 0.9;
         }
 
         /* Education Section - Parallax Cards with Gradient Borders */
@@ -1220,7 +1431,7 @@
         }
 
         .contact-info h3 {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Poppins', sans-serif;
             font-size: 2rem;
             margin-bottom: 30px;
             color: var(--text-color);
@@ -1542,7 +1753,7 @@
         @keyframes fadeInDown {
             from {
                 opacity: 0;
-                transform: translateY(-30px);
+                transform: translateY(-20px);
             }
             to {
                 opacity: 1;
@@ -1651,6 +1862,30 @@
             .right {
                 left: 0;
             }
+
+            /* Services Timeline Responsive */
+            .services-timeline::before {
+                left: 31px;
+            }
+
+            .service-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+
+            .service-item::after {
+                left: 21px;
+            }
+
+            .service-left::after,
+            .service-right::after {
+                left: 21px;
+            }
+
+            .service-right {
+                left: 0;
+            }
         }
 
         @media (max-width: 576px) {
@@ -1671,724 +1906,866 @@
             }
         }
     </style>
-    </head>
-    <body>
-        <!-- Floating Background Elements -->
-        <div class="bg-elements">
-            <div class="bg-element bg-1"></div>
-            <div class="bg-element bg-2"></div>
-            <div class="bg-element bg-3"></div>
-            <div class="bg-element bg-4"></div>
+</head>
+<body>
+    <!-- Floating Background Elements -->
+    <div class="bg-elements">
+        <div class="bg-element bg-1"></div>
+        <div class="bg-element bg-2"></div>
+        <div class="bg-element bg-3"></div>
+        <div class="bg-element bg-4"></div>
+    </div>
+
+    <!-- Particle Background -->
+    <div class="particles" id="particles-js"></div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="logo-container">
+                <div class="logo-img">S</div>
+                <a href="#home" class="logo">Siva</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#certifications">Certifications</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li>
+                    <button class="theme-toggle" id="themeToggle">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
         </div>
+    </nav>
 
-        <!-- Particle Background -->
-        <div class="particles" id="particles-js"></div>
+    <!-- Home Section -->
+    <section id="home">
+        <div class="home-content" id="home-content">
+            <h1>M Sivananthan</h1>
+            <h2 id="role-title">Web Developer & Programmer</h2>
+            <p>
+                <span class="rotating-text active">Innovative CSE Enthusiast Building the Future, One Line of Code at a Time<br>Welcome to my digital portfolio! I'm a Computer Science and Engineering graduate passionate about software development, system design, and emerging technologies. Explore my projects, certifications, and experiences that reflect a commitment to innovation and real-world problem-solving.</span>
+                <span class="rotating-text">Turning Ideas into Scalable Solutions with Code and Creativity<br>As a CSE developer, I specialize in building efficient, secure, and user-centric applications. This portfolio showcases my journey through full-stack development, cloud computing, and data structures, supported by hands-on projects and internships.</span>
+                <span class="rotating-text">Empowering Technology with Purpose and Precision<br>I'm a detail-oriented Computer Science Engineer with a strong foundation in programming, algorithms, and modern web technologies. Dive into my portfolio to see how I blend creativity with logic to solve real-world challenges and build impactful digital experiences.</span>
+                <span class="rotating-text">Driven by Curiosity, Powered by Code<br>Hello! I'm passionate about continuous learning and building solutions that matter. My portfolio includes diverse projects in Python, JavaScript, and cloud infrastructure, backed by a solid academic background and real-time problem-solving experiences.</span>
+                <span class="rotating-text">Engineering the Digital World with Skill and Vision<br>With a foundation in Computer Science and Engineering, I create robust applications that serve practical needs. From smart systems to responsive web apps, this portfolio reflects my dedication to innovation, collaboration, and lifelong learning.</span>
+            </p>
+            <div class="cta-buttons">
+                <a href="#projects" class="btn btn-primary">View Projects</a>
+                <a href="resume.pdf" class="btn btn-outline">Download Resume</a>
+            </div>
+            <div class="social-icons">
+                <a href="https://www.linkedin.com/in/sivananthanm" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://github.com/MSivananthan" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://x.com/SivananthanM6" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com/_siva____46/" target="_blank"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </section>
 
-        <!-- Navigation -->
-        <nav id="navbar">
-            <div class="nav-container">
-                <div class="logo-container">
-                    <div class="logo-img">S</div>
-                    <a href="#home" class="logo">Siva</a>
-                </div>
-                <ul class="nav-links">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#education">Education</a></li>
-                    <li><a href="#experience">Experience</a></li>
-                    <li><a href="#skills">Skills</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#certifications">Certifications</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                    <li>
-                        <button class="theme-toggle" id="themeToggle">
-                            <i class="fas fa-moon"></i>
-                        </button>
-                    </li>
-                </ul>
-                <div class="hamburger">
-                    <i class="fas fa-bars"></i>
+    <!-- About Section -->
+    <section id="about">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-container">
+            <div class="about-img-container">
+                <div class="about-img">
+                    <img src="image.png" alt="M Sivananthan">
                 </div>
             </div>
-        </nav>
-
-        <!-- Home Section -->
-        <section id="home">
-            <div class="home-content" id="home-content">
-                <h1>M Sivananthan</h1>
-                <h2>Web Developer & Programmer</h2>
-                <p>I build impactful web applications with modern technologies to solve real-world problems. Passionate about creating seamless user experiences and innovative solutions.</p>
-                <div class="cta-buttons">
-                    <a href="#projects" class="btn btn-primary">View Projects</a>
-                    <a href="resume.pdf" class="btn btn-outline">Download Resume</a>
+            <div class="about-content">
+                <h3>Hello, I'm Sivananthan</h3>
+                <p>A passionate Computer Science Engineering graduate with expertise in web development and programming. I enjoy creating web applications that provide seamless user experiences.</p>
+                <p>My goal is to build solutions that make a difference while continuously learning and improving my skills. I'm particularly interested in full-stack development and cloud technologies.</p>
+                <p>When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or participating in coding competitions.</p>
+                <div class="skills-list">
+                    <span class="skill-tag"><i class="fab fa-python"></i> Python</span>
+                    <span class="skill-tag"><i class="fab fa-java"></i> Java</span>
+                    <span class="skill-tag"><i class="fab fa-js"></i> JavaScript</span>
+                    <span class="skill-tag"><i class="fab fa-html5"></i> HTML/CSS</span>
+                    <span class="skill-tag"><i class="fab fa-react"></i> React</span>
+                    <span class="skill-tag"><i class="fab fa-aws"></i> AWS</span>
+                    <span class="skill-tag"><i class="fas fa-database"></i> MySQL</span>
+                    <span class="skill-tag"><i class="fas fa-paint-brush"></i> UI/UX</span>
                 </div>
-                <div class="social-icons">
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <h2 class="section-title">My Services</h2>
+        <div class="services-intro">
+            <p>Bringing Ideas to Life with Technology and Precision</p>
+            <p>I offer a wide range of development and technical services tailored to meet individual, startup, or enterprise needs. With a solid foundation in Computer Science and Engineering, I combine innovation, functionality, and clean code to deliver reliable solutions.</p>
+        </div>
+        <div class="services-timeline">
+            <div class="service-item service-left">
+                <div class="service-content">
+                    <h3><i class="fas fa-rocket"></i> Web Development</h3>
+                    <p>From static landing pages to dynamic full-stack applications, I design and build responsive, user-friendly websites using modern frameworks like HTML, CSS, JavaScript, React, Node.js, and Flask. Whether you're launching a business or upgrading your digital presence—I've got you covered.</p>
+                </div>
+            </div>
+            <div class="service-item service-right">
+                <div class="service-content">
+                    <h3><i class="fas fa-brain"></i> Software Development</h3>
+                    <p>Custom software solutions built to solve real-world problems. I develop scalable and secure applications using Python, Java, and SQLAlchemy—suitable for automation, data handling, or backend processing.</p>
+                </div>
+            </div>
+            <div class="service-item service-left">
+                <div class="service-content">
+                    <h3><i class="fas fa-cloud"></i> Cloud & Deployment</h3>
+                    <p>Need help moving to the cloud or setting up deployment pipelines? I offer cloud integration and deployment services using AWS, including EC2, S3, Lambda, and serverless setups—making your apps more scalable and efficient.</p>
+                </div>
+            </div>
+            <div class="service-item service-right">
+                <div class="service-content">
+                    <h3><i class="fas fa-database"></i> Data Handling & APIs</h3>
+                    <p>I build robust backend APIs, integrate third-party services, and manage data using RESTful architecture and Firebase. Data is the heart of any system, and I ensure it flows smoothly, securely, and accurately.</p>
+                </div>
+            </div>
+            <div class="service-item service-left">
+                <div class="service-content">
+                    <h3><i class="fas fa-mobile-alt"></i> UI/UX Prototyping</h3>
+                    <p>Creating clean, accessible, and futuristic interfaces using Figma or code-based frameworks. I focus on usability and interaction design to make your applications intuitive and user-centric.</p>
+                </div>
+            </div>
+            <div class="service-item service-right">
+                <div class="service-content">
+                    <h3><i class="fas fa-file-alt"></i> Technical Documentation & Support</h3>
+                    <p>Clear, concise, and helpful documentation is key to maintainable code. I provide well-structured technical docs and post-deployment support to ensure smooth handovers and future scalability.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education">
+        <h2 class="section-title">Education</h2>
+        <div class="education-container">
+            <div class="education-item">
+                <h3>Bachelor of Engineering in Computer Science</h3>
+                <span class="date">2021 - 2025</span>
+                <p>Dhaanish Ahmed College of Engineering, Chennai</p>
+                <p style="color: #8B85FF;">CGPA: 87.3%</p>
+                <p>Relevant Coursework: Data Structures, Algorithms, Database Systems, Web Development, Cloud Computing</p>
+            </div>
+            <div class="education-item">
+                <h3>Higher Secondary School</h3>
+                <span class="date">2020 - 2021</span>
+                <p>Sri Vijay Vidyalaya Matric Hr Sec School, Dharmapuri</p>
+                <p style="color: #8B85FF;">Percentage: 88.3%</p>
+                <p>Relevant Coursework: Bio-Maths</p>
+            </div>
+            <div class="education-item">
+                <h3>Secondary School</h3>
+                <span class="date">2018 - 2019</span>
+                <p>Vidyaa Vikas Matric Hr Sec School, Namakkal</p>
+                <p style="color: #8B85FF;">Percentage: 86.6%</p>
+                <p>Relevant Coursework: Science-Humanities</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <h2 class="section-title">Experience</h2>
+        <div class="timeline">
+            <div class="timeline-item left">
+                <div class="timeline-content">
+                    <h3>Web Development Intern</h3>
+                    <span class="date">July 2024</span>
+                    <h4>Codeclause Interns</h4>  
+                    <ul>
+                        <li>Designed and coded web features, troubleshooting issues to enhance user experience</li>
+                        <li>Collaborated with developers to deliver seamless user experiences</li>
+                        <li>Key skills: HTML/CSS, JavaScript, API Development, Git/GitHub, Responsive Design</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="timeline-item right">
+                <div class="timeline-content">
+                    <h3>Python Intern</h3>
+                    <span class="date">December 2024</span>
+                    <h4>Infosys SpringBoard</h4>
+                    <ul>
+                        <li>Developed web applications, enhancing coding skills in a professional environment</li>
+                        <li>Collaborated with experienced developers to complete projects successfully</li>
+                        <li>Key skills: Python, Problem-Solving, Creative Coding, Simple Code Writing, Error Handling</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2 class="section-title">Skills</h2>
+        <div class="skills-container">
+            <div class="skill-category">
+                <h3>Programming Languages</h3>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span><i class="fab fa-python skill-icon"></i> Python</span>
+                        <span>90%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 90%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span><i class="fab fa-java skill-icon"></i> Java</span>
+                        <span>80%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 80%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span><i class="fab fa-js skill-icon"></i> JavaScript</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 85%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span><i class="fas fa-code skill-icon"></i> C (Basics)</span>
+                        <span>70%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 70%"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>Web Development</h3>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span><i class="fab fa-html5 skill-icon"></i> HTML/CSS</span>
+                        <span>95%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 95%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span><i class="fab fa-react skill-icon"></i> React</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 85%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span><i class="fas fa-flask skill-icon"></i> Flask</span>
+                        <span>80%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 80%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span><i class="fab fa-node-js skill-icon"></i> Node.js</span>
+                        <span>75%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 75%"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>Tools & Technologies</h3>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span><i class="fab fa-git-alt skill-icon"></i> Git/GitHub</span>
+                        <span>90%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 90%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span><i class="fab fa-aws skill-icon"></i> AWS</span>
+                        <span>80%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 80%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span><i class="fas fa-database skill-icon"></i> MySQL</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 85%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span><i class="fas fa-paint-brush skill-icon"></i> Figma</span>
+                        <span>75%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 75%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <h2 class="section-title">Projects</h2>
+        <div class="projects-container">
+            <div class="project-card">
+                <div class="project-img">
+                    <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="VerifAI Suite">
+                </div>
+                <div class="project-content">
+                    <h3>VerifAI</h3>
+                    <p>A comprehensive web application providing advanced tools for code plagiarism detection, AI content analysis, and text humanization. Designed for developers, educators, and content creators.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">HTML/CSS</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Machine Learning</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="msivananthan.github.io/VerifAI/" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                        <a href="https://github.com/MSivananthan/VerifAI" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-img">
+                    <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1511&q=80" alt="Family Finance Tracker">
+                </div>
+                <div class="project-content">
+                    <h3>Family Finance Tracker</h3>
+                    <p>A one-stop solution for secure, real-time family financial management. Track expenses, manage budgets, set savings goals, and gain insights effortlessly.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">HTML/CSS</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">Python Flask</span>
+                        <span class="tech-tag">SQL Alchemy</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                        <a href="#" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-img" id="weather-project-img">
+                    <!-- Weather image will be dynamically updated by JS -->
+                </div>
+                <div class="project-content">
+                    <h3>Weather Prediction</h3>
+                    <p>Provides real-time weather updates and forecasts based on location, enhancing user accessibility and information accuracy.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">HTML/CSS</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">OpenWeather API</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://msivananthan.github.io/Weather_Prediction/" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                        <a href="https://github.com/MSivananthan/Weather_Prediction" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-img">
+                    <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Rideshare Application">
+                </div>
+                <div class="project-content">
+                    <h3>Rideshare Application</h3>
+                    <p>An AI-powered ride-share app using Firebase to optimize employee commuting with real-time matching, dynamic routing, and sustainable riding.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">HTML/CSS</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">Firebase</span>
+                        <span class="tech-tag">Google Maps API</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://msivananthan.github.io/-TECHTITANS_DHAANISH-RideShare-Application/" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                        <a href="https://github.com/MSivananthan/-TECHTITANS_DHAANISH-RideShare-Application" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-img">
+                    <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="E-Commerce Site">
+                </div>
+                <div class="project-content">
+                    <h3>E-Commerce Site</h3>
+                    <p>A seamless shopping experience with efficient order management and user-friendly interface built with MERN stack.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">MongoDB</span>
+                        <span class="tech-tag">Express.js</span>
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">Node.js</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://msivananthan.github.io/E-Commerce-Website/" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                        <a href="https://github.com/MSivananthan/NM-E-commerce-Site" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-img">
+                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80" alt="LMS Portal">
+                </div>
+                <div class="project-content">
+                    <h3>LMS Portal</h3>
+                    <p>A comprehensive Learning Management System with course management, student tracking, and interactive learning modules built with React and Node.js.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">HTML/CSS</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">Node.js</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                        <a href="#" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications">
+        <h2 class="section-title">Certifications</h2>
+        <div class="certifications-container">
+            <div class="certification-card">
+                <h3>MERN Stack Certification</h3>
+                <span class="issuer">SmartBridge</span>
+                <span class="date">March 2025</span>
+            </div>
+            <div class="certification-card">
+                <h3>Python Foundation Certification</h3>
+                <span class="issuer">Infosys Springboard</span>
+                <span class="date">August 2024</span>
+            </div>
+            <div class="certification-card">
+                <h3>TCS iON Career Edge - Young Professional Development</h3>
+                <span class="issuer">TCS Codevita</span>
+                <span class="date">May 2024</span>
+            </div>
+            <div class="certification-card">
+                <h3>Python for Data Science</h3>
+                <span class="issuer">NPTEL, Guvi and Kaggle</span>
+                <span class="date">September 2023</span>
+            </div>
+            <div class="certification-card">
+                <h3>Foundations of Cyber Security</h3>
+                <span class="issuer">Coursera</span>
+                <span class="date">May 2024</span>
+            </div>
+            <div class="certification-card">
+                <h3>Cloud Computing</h3>
+                <span class="issuer">Naan Mudhalvan (IBM)</span>
+                <span class="date">December 2023</span>
+            </div>
+            <div class="certification-card">
+                <h3>Software Testing and Automation</h3>
+                <span class="issuer">Ingage</span>
+                <span class="date">October 2024</span>
+            </div>
+            <div class="certification-card">
+                <h3>Effective Speaking and Listening Skill</h3>
+                <span class="issuer">Wadhwani Foundation</span>
+                <span class="date">October 2024</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2 class="section-title">Contact Me</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Get In Touch</h3>
+                <div class="contact-details">
+                    <p><i class="fas fa-envelope"></i> sivananthan46m@gmail.com</p>
+                    <p><i class="fas fa-phone"></i> +91-8838727492</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Palacode, Dharmapuri, Tamil Nadu</p>
+                </div>
+                <h3>Connect With Me</h3>
+                <div class="contact-social">
                     <a href="https://www.linkedin.com/in/sivananthanm" target="_blank"><i class="fab fa-linkedin-in"></i></a>
                     <a href="https://github.com/MSivananthan" target="_blank"><i class="fab fa-github"></i></a>
                     <a href="https://x.com/SivananthanM6" target="_blank"><i class="fab fa-twitter"></i></a>
                     <a href="https://www.instagram.com/_siva____46/" target="_blank"><i class="fab fa-instagram"></i></a>
                 </div>
             </div>
-        </section>
-
-        <!-- About Section -->
-        <section id="about">
-            <h2 class="section-title">About Me</h2>
-            <div class="about-container">
-                <div class="about-img-container">
-                    <div class="about-img">
-                        <img src="image.png" alt="M Sivananthan">
+            <div class="contact-form">
+                <form action="#" method="POST">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
                     </div>
-                </div>
-                <div class="about-content">
-                    <h3>Hello, I'm Sivananthan</h3>
-                    <p>A passionate Computer Science Engineering graduate with expertise in web development and programming. I enjoy creating web applications that provide seamless user experiences.</p>
-                    <p>My goal is to build solutions that make a difference while continuously learning and improving my skills. I'm particularly interested in full-stack development and cloud technologies.</p>
-                    <p>When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or participating in coding competitions.</p>
-                    <div class="skills-list">
-                        <span class="skill-tag"><i class="fab fa-python"></i> Python</span>
-                        <span class="skill-tag"><i class="fab fa-java"></i> Java</span>
-                        <span class="skill-tag"><i class="fab fa-js"></i> JavaScript</span>
-                        <span class="skill-tag"><i class="fab fa-html5"></i> HTML/CSS</span>
-                        <span class="skill-tag"><i class="fab fa-react"></i> React</span>
-                        <span class="skill-tag"><i class="fab fa-aws"></i> AWS</span>
-                        <span class="skill-tag"><i class="fas fa-database"></i> MySQL</span>
-                        <span class="skill-tag"><i class="fas fa-paint-brush"></i> UI/UX</span>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
                     </div>
-                </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Education Section -->
-        <section id="education">
-            <h2 class="section-title">Education</h2>
-            <div class="education-container">
-                <div class="education-item">
-                    <h3>Bachelor of Engineering in Computer Science</h3>
-                    <span class="date">2021 - 2025</span>
-                    <p>Dhaanish Ahmed College of Engineering, Chennai</p>
-                    <p style="color: #8B85FF;">CGPA: 87.3%</p>
-                    <p>Relevant Coursework: Data Structures, Algorithms, Database Systems, Web Development, Cloud Computing</p>
-                </div>
-                <div class="education-item">
-                    <h3>Higher Secondary School</h3>
-                    <span class="date">2020 - 2021</span>
-                    <p>Sri Vijay Vidyalaya Matric Hr Sec School, Dharmapuri</p>
-                    <p style="color: #8B85FF;">Percentage: 88.3%</p>
-                    <p>Relevant Coursework: Bio-Maths</p>
-                </div>
-                <div class="education-item">
-                    <h3>Secondary School</h3>
-                    <span class="date">2018 - 2019</span>
-                    <p>Vidyaa Vikas Matric Hr Sec School, Namakkal</p>
-                    <p style="color: #8B85FF;">Percentage: 86.6%</p>
-                    <p>Relevant Coursework: Science-Humanities</p>
-                </div>
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>Thank you for visiting my portfolio! Let's create something amazing together.</p>
+            <div class="footer-social">
+                <a href="https://www.linkedin.com/in/sivananthanm" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://github.com/MSivananthan" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://x.com/SivananthanM6" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com/_siva____46/" target="_blank"><i class="fab fa-instagram"></i></a>
             </div>
-        </section>
+            <p class="copyright">© 2025 M Sivananthan. All rights reserved.</p>
+        </div>
+    </footer>
 
-        <!-- Experience Section -->
-        <section id="experience">
-            <h2 class="section-title">Experience</h2>
-            <div class="timeline">
-                <div class="timeline-item left">
-                    <div class="timeline-content">
-                        <h3>Web Development Intern</h3>
-                        <span class="date">July 2024</span>
-                        <h4>Codeclause Interns</h4>  
-                        <ul>
-                            <li>Designed and coded web features, troubleshooting issues to enhance user experience</li>
-                            <li>Collaborated with developers to deliver seamless user experiences</li>
-                            <li>Key skills: HTML/CSS, JavaScript, API Development, Git/GitHub, Responsive Design</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="timeline-item right">
-                    <div class="timeline-content">
-                        <h3>Python Intern</h3>
-                        <span class="date">December 2024</span>
-                        <h4>Infosys SpringBoard</h4>
-                        <ul>
-                            <li>Developed web applications, enhancing coding skills in a professional environment</li>
-                            <li>Collaborated with experienced developers to complete projects successfully</li>
-                            <li>Key skills: Python, Problem-Solving, Creative Coding, Simple Code Writing, Error Handling</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <script>
+        // Mobile Navigation Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
 
-        <!-- Skills Section -->
-        <section id="skills">
-            <h2 class="section-title">Skills</h2>
-            <div class="skills-container">
-                <div class="skill-category">
-                    <h3>Programming Languages</h3>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span><i class="fab fa-python skill-icon"></i> Python</span>
-                            <span>90%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 90%"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span><i class="fab fa-java skill-icon"></i> Java</span>
-                            <span>80%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 80%"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span><i class="fab fa-js skill-icon"></i> JavaScript</span>
-                            <span>85%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 85%"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span><i class="fas fa-code skill-icon"></i> C (Basics)</span>
-                            <span>70%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 70%"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3>Web Development</h3>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span><i class="fab fa-html5 skill-icon"></i> HTML/CSS</span>
-                            <span>95%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 95%"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span><i class="fab fa-react skill-icon"></i> React</span>
-                            <span>85%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 85%"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span><i class="fas fa-flask skill-icon"></i> Flask</span>
-                            <span>80%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 80%"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span><i class="fab fa-node-js skill-icon"></i> Node.js</span>
-                            <span>75%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 75%"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3>Tools & Technologies</h3>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span><i class="fab fa-git-alt skill-icon"></i> Git/GitHub</span>
-                            <span>90%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 90%"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span><i class="fab fa-aws skill-icon"></i> AWS</span>
-                            <span>80%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 80%"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span><i class="fas fa-database skill-icon"></i> MySQL</span>
-                            <span>85%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 85%"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span><i class="fas fa-paint-brush skill-icon"></i> Figma</span>
-                            <span>75%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 75%"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
 
-        <!-- Projects Section -->
-        <section id="projects">
-            <h2 class="section-title">Projects</h2>
-            <div class="projects-container">
-                <div class="project-card">
-                    <div class="project-img">
-                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="VerifAI Suite">
-                    </div>
-                    <div class="project-content">
-                        <h3>VerifAI</h3>
-                        <p>A comprehensive web application providing advanced tools for code plagiarism detection, AI content analysis, and text humanization. Designed for developers, educators, and content creators.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">HTML/CSS</span>
-                            <span class="tech-tag">JavaScript</span>
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">Machine Learning</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="msivananthan.github.io/VerifAI/" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
-                            <a href="https://github.com/MSivananthan/VerifAI" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-img">
-                        <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1511&q=80" alt="Family Finance Tracker">
-                    </div>
-                    <div class="project-content">
-                        <h3>Family Finance Tracker</h3>
-                        <p>A one-stop solution for secure, real-time family financial management. Track expenses, manage budgets, set savings goals, and gain insights effortlessly.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">HTML/CSS</span>
-                            <span class="tech-tag">JavaScript</span>
-                            <span class="tech-tag">Python Flask</span>
-                            <span class="tech-tag">SQL Alchemy</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
-                            <a href="#" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-img" id="weather-project-img">
-                        <!-- Weather image will be dynamically updated by JS -->
-                    </div>
-                    <div class="project-content">
-                        <h3>Weather Prediction</h3>
-                        <p>Provides real-time weather updates and forecasts based on location, enhancing user accessibility and information accuracy.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">HTML/CSS</span>
-                            <span class="tech-tag">JavaScript</span>
-                            <span class="tech-tag">OpenWeather API</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://msivananthan.github.io/Weather_Prediction/" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
-                            <a href="https://github.com/MSivananthan/Weather_Prediction" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-img">
-                        <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Rideshare Application">
-                    </div>
-                    <div class="project-content">
-                        <h3>Rideshare Application</h3>
-                        <p>An AI-powered ride-share app using Firebase to optimize employee commuting with real-time matching, dynamic routing, and sustainable riding.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">HTML/CSS</span>
-                            <span class="tech-tag">JavaScript</span>
-                            <span class="tech-tag">Firebase</span>
-                            <span class="tech-tag">Google Maps API</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://msivananthan.github.io/-TECHTITANS_DHAANISH-RideShare-Application/" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
-                            <a href="https://github.com/MSivananthan/-TECHTITANS_DHAANISH-RideShare-Application" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-img">
-                        <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="E-Commerce Site">
-                    </div>
-                    <div class="project-content">
-                        <h3>E-Commerce Site</h3>
-                        <p>A seamless shopping experience with efficient order management and user-friendly interface built with MERN stack.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">MongoDB</span>
-                            <span class="tech-tag">Express.js</span>
-                            <span class="tech-tag">React</span>
-                            <span class="tech-tag">Node.js</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://msivananthan.github.io/E-Commerce-Website/" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
-                            <a href="https://github.com/MSivananthan/NM-E-commerce-Site" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-img">
-                        <img src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="LMS Portal">
-                    </div>
-                    <div class="project-content">
-                        <h3>Assessment Platform</h3>
-                        <p>A comprehensive Learning Management System with course management, student tracking, and interactive learning modules built with React and Node.js.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">HTML/CSS</span>
-                            <span class="tech-tag">JavaScript</span>
-                            <span class="tech-tag">React</span>
-                            <span class="tech-tag">Node.js</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
-                            <a href="#" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Certifications Section -->
-        <section id="certifications">
-            <h2 class="section-title">Certifications</h2>
-            <div class="certifications-container">
-                <div class="certification-card">
-                    <h3>MERN Stack Certification</h3>
-                    <span class="issuer">SmartBridge</span>
-                    <span class="date">March 2025</span>
-                </div>
-                <div class="certification-card">
-                    <h3>Python Foundation Certification</h3>
-                    <span class="issuer">Infosys Springboard</span>
-                    <span class="date">August 2024</span>
-                </div>
-                <div class="certification-card">
-                    <h3>TCS iON Career Edge - Young Professional Development</h3>
-                    <span class="issuer">TCS Codevita</span>
-                    <span class="date">May 2024</span>
-                </div>
-                <div class="certification-card">
-                    <h3>Python for Data Science</h3>
-                    <span class="issuer">NPTEL, Guvi and Kaggle</span>
-                    <span class="date">September 2023</span>
-                </div>
-                <div class="certification-card">
-                    <h3>Foundations of Cyber Security</h3>
-                    <span class="issuer">Coursera</span>
-                    <span class="date">May 2024</span>
-                </div>
-                <div class="certification-card">
-                    <h3>Cloud Computing</h3>
-                    <span class="issuer">Naan Mudhalvan (IBM)</span>
-                    <span class="date">December 2023</span>
-                </div>
-                <div class="certification-card">
-                    <h3>Software Testing and Automation</h3>
-                    <span class="issuer">Ingage</span>
-                    <span class="date">October 2024</span>
-                </div>
-                <div class="certification-card">
-                    <h3>Effective Speaking and Listening Skill</h3>
-                    <span class="issuer">Wadhwani Foundation</span>
-                    <span class="date">October 2024</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact">
-            <h2 class="section-title">Contact Me</h2>
-            <div class="contact-container">
-                <div class="contact-info">
-                    <h3>Get In Touch</h3>
-                    <div class="contact-details">
-                        <p><i class="fas fa-envelope"></i> sivananthan46m@gmail.com</p>
-                        <p><i class="fas fa-phone"></i> +91-8838727492</p>
-                        <p><i class="fas fa-map-marker-alt"></i> Palacode, Dharmapuri, Tamil Nadu</p>
-                    </div>
-                    <h3>Connect With Me</h3>
-                    <div class="contact-social">
-                        <a href="https://www.linkedin.com/in/sivananthanm" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="https://github.com/MSivananthan" target="_blank"><i class="fab fa-github"></i></a>
-                        <a href="https://x.com/SivananthanM6" target="_blank"><i class="fab fa-twitter"></i></a>
-                        <a href="https://www.instagram.com/_siva____46/" target="_blank"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-                <div class="contact-form">
-                    <form action="#" method="POST">
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="subject">Subject</label>
-                            <input type="text" id="subject" name="subject" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" name="message" required></textarea>
-                        </div>
-                        <button type="submit" class="submit-btn">Send Message</button>
-                    </form>
-                </div>
-            </div>
-        </section>
-
-        <!-- Footer -->
-        <footer>
-            <div class="footer-content">
-                <p>Thank you for visiting my portfolio! Let's create something amazing together.</p>
-                <div class="footer-social">
-                    <a href="https://www.linkedin.com/in/sivananthanm" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="https://github.com/MSivananthan" target="_blank"><i class="fab fa-github"></i></a>
-                    <a href="https://x.com/SivananthanM6" target="_blank"><i class="fab fa-twitter"></i></a>
-                    <a href="https://www.instagram.com/_siva____46/" target="_blank"><i class="fab fa-instagram"></i></a>
-                </div>
-                <p class="copyright">© 2025 M Sivananthan. All rights reserved.</p>
-            </div>
-        </footer>
-
-        <script>
-            // Mobile Navigation Toggle
-            const hamburger = document.querySelector('.hamburger');
-            const navLinks = document.querySelector('.nav-links');
-
-            hamburger.addEventListener('click', () => {
-                navLinks.classList.toggle('active');
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
             });
+        });
 
-            // Close mobile menu when clicking a link
-            document.querySelectorAll('.nav-links a').forEach(link => {
-                link.addEventListener('click', () => {
-                    navLinks.classList.remove('active');
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+
+                window.scrollTo({
+                    top: targetElement.offsetTop - 70,
+                    behavior: 'smooth'
                 });
             });
+        });
 
-            // Navbar scroll effect
-            window.addEventListener('scroll', () => {
-                const navbar = document.getElementById('navbar');
-                if (window.scrollY > 50) {
-                    navbar.classList.add('scrolled');
-                } else {
-                    navbar.classList.remove('scrolled');
+        // 3D Tilt Effect for Home Section
+        const homeContent = document.getElementById('home-content');
+
+        homeContent.addEventListener('mousemove', (e) => {
+            const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
+            const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
+            homeContent.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+        });
+
+        homeContent.addEventListener('mouseenter', () => {
+            homeContent.style.transition = 'all 0.1s ease';
+        });
+
+        homeContent.addEventListener('mouseleave', () => {
+            homeContent.style.transition = 'all 0.5s ease';
+            homeContent.style.transform = 'rotateY(0deg) rotateX(0deg)';
+        });
+
+        // Animate timeline items on scroll
+        const timelineItems = document.querySelectorAll('.timeline-item');
+        const serviceItems = document.querySelectorAll('.service-item');
+
+        function checkTimelineItems() {
+            const triggerBottom = window.innerHeight / 5 * 4;
+
+            timelineItems.forEach(item => {
+                const itemTop = item.getBoundingClientRect().top;
+
+                if (itemTop < triggerBottom) {
+                    item.classList.add('visible');
                 }
             });
 
-            // Smooth scrolling for anchor links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
+            serviceItems.forEach(item => {
+                const itemTop = item.getBoundingClientRect().top;
 
-                    const targetId = this.getAttribute('href');
-                    const targetElement = document.querySelector(targetId);
-
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 70,
-                        behavior: 'smooth'
-                    });
-                });
-            });
-
-            // 3D Tilt Effect for Home Section
-            const homeContent = document.getElementById('home-content');
-
-            homeContent.addEventListener('mousemove', (e) => {
-                const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
-                const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
-                homeContent.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
-            });
-
-            homeContent.addEventListener('mouseenter', () => {
-                homeContent.style.transition = 'all 0.1s ease';
-            });
-
-            homeContent.addEventListener('mouseleave', () => {
-                homeContent.style.transition = 'all 0.5s ease';
-                homeContent.style.transform = 'rotateY(0deg) rotateX(0deg)';
-            });
-
-            // Animate timeline items on scroll
-            const timelineItems = document.querySelectorAll('.timeline-item');
-
-            function checkTimelineItems() {
-                const triggerBottom = window.innerHeight / 5 * 4;
-
-                timelineItems.forEach(item => {
-                    const itemTop = item.getBoundingClientRect().top;
-
-                    if (itemTop < triggerBottom) {
-                        item.classList.add('visible');
-                    }
-                });
-            }
-
-            window.addEventListener('scroll', checkTimelineItems);
-            checkTimelineItems(); // Check on load
-
-            // Animate skill bars on scroll
-            const skillBars = document.querySelectorAll('.skill-progress');
-            let skillsAnimated = false;
-
-            function animateSkillBars() {
-                if (skillsAnimated) return;
-
-                const skillsSection = document.getElementById('skills');
-                const sectionTop = skillsSection.getBoundingClientRect().top;
-                const sectionHeight = skillsSection.offsetHeight;
-                const triggerPoint = window.innerHeight - sectionHeight / 3;
-
-                if (sectionTop < triggerPoint) {
-                    skillBars.forEach(bar => {
-                        const width = bar.parentElement.previousElementSibling.lastElementChild.textContent;
-                        bar.style.width = width;
-                    });
-                    skillsAnimated = true;
+                if (itemTop < triggerBottom) {
+                    item.classList.add('visible');
                 }
-            }
-
-            window.addEventListener('scroll', animateSkillBars);
-            animateSkillBars(); // Check on load
-
-            // Floating background elements animation
-            const bgElements = document.querySelectorAll('.bg-element');
-
-            bgElements.forEach((el, index) => {
-                // Randomize initial positions slightly
-                const randomX = Math.random() * 20 - 10;
-                const randomY = Math.random() * 20 - 10;
-                el.style.transform = `translate(${randomX}px, ${randomY}px)`;
-
-                // Set unique animation durations
-                const duration = 8 + index * 2;
-                el.style.animationDuration = `${duration}s`;
             });
+        }
 
-            // Create particle background
-            function createParticles() {
-                const particlesContainer = document.querySelector('.particles');
-                const particleCount = 30;
+        window.addEventListener('scroll', checkTimelineItems);
+        checkTimelineItems(); // Check on load
 
-                for (let i = 0; i < particleCount; i++) {
-                    const particle = document.createElement('div');
-                    particle.classList.add('particle');
+        // Animate skill bars on scroll
+        const skillBars = document.querySelectorAll('.skill-progress');
+        let skillsAnimated = false;
 
-                    // Random size between 2px and 6px
-                    const size = Math.random() * 4 + 2;
-                    particle.style.width = `${size}px`;
-                    particle.style.height = `${size}px`;
+        function animateSkillBars() {
+            if (skillsAnimated) return;
 
-                    // Random position
-                    particle.style.left = `${Math.random() * 100}%`;
-                    particle.style.top = `${Math.random() * 100}%`;
+            const skillsSection = document.getElementById('skills');
+            const sectionTop = skillsSection.getBoundingClientRect().top;
+            const sectionHeight = skillsSection.offsetHeight;
+            const triggerPoint = window.innerHeight - sectionHeight / 3;
 
-                    // Random opacity
-                    particle.style.opacity = Math.random() * 0.5 + 0.1;
-
-                    // Random animation
-                    const duration = Math.random() * 20 + 10;
-                    const delay = Math.random() * 5;
-                    particle.style.animation = `float ${duration}s ease-in-out ${delay}s infinite`;
-
-                    particlesContainer.appendChild(particle);
-                }
+            if (sectionTop < triggerPoint) {
+                skillBars.forEach(bar => {
+                    const width = bar.parentElement.previousElementSibling.lastElementChild.textContent;
+                    bar.style.width = width;
+                });
+                skillsAnimated = true;
             }
+        }
 
-            createParticles();
+        window.addEventListener('scroll', animateSkillBars);
+        animateSkillBars(); // Check on load
 
-            // Theme toggle functionality
-            const themeToggle = document.getElementById('themeToggle');
-            const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+        // Floating background elements animation
+        const bgElements = document.querySelectorAll('.bg-element');
 
-            // Check for saved theme preference or use the system preference
-            const currentTheme = localStorage.getItem('theme');
-            if (currentTheme === 'light' || (!currentTheme && !prefersDarkScheme.matches)) {
+        bgElements.forEach((el, index) => {
+            // Randomize initial positions slightly
+            const randomX = Math.random() * 20 - 10;
+            const randomY = Math.random() * 20 - 10;
+            el.style.transform = `translate(${randomX}px, ${randomY}px)`;
+
+            // Set unique animation durations
+            const duration = 8 + index * 2;
+            el.style.animationDuration = `${duration}s`;
+        });
+
+        // Create particle background
+        function createParticles() {
+            const particlesContainer = document.querySelector('.particles');
+            const particleCount = 30;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+
+                // Random size between 2px and 6px
+                const size = Math.random() * 4 + 2;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+
+                // Random position
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+
+                // Random opacity
+                particle.style.opacity = Math.random() * 0.5 + 0.1;
+
+                // Random animation
+                const duration = Math.random() * 20 + 10;
+                const delay = Math.random() * 5;
+                particle.style.animation = `float ${duration}s ease-in-out ${delay}s infinite`;
+
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        createParticles();
+
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+
+        // Check for saved theme preference or use the system preference
+        const currentTheme = localStorage.getItem('theme');
+        if (currentTheme === 'light' || (!currentTheme && !prefersDarkScheme.matches)) {
+            document.body.setAttribute('data-theme', 'light');
+            themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+        } else {
+            themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        }
+
+        themeToggle.addEventListener('click', () => {
+            let theme;
+            if (document.body.getAttribute('data-theme') === 'light') {
+                document.body.setAttribute('data-theme', 'dark');
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                theme = 'dark';
+            } else {
                 document.body.setAttribute('data-theme', 'light');
                 themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-            } else {
-                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                theme = 'light';
+            }
+            localStorage.setItem('theme', theme);
+        });
+
+        // Dynamic weather image for weather project
+        function updateWeatherImage() {
+            const weatherImgContainer = document.getElementById('weather-project-img');
+            const weatherTypes = ['clear', 'clouds', 'rain', 'thunderstorm', 'snow'];
+            const randomWeather = weatherTypes[Math.floor(Math.random() * weatherTypes.length)];
+
+            let imgUrl;
+            switch(randomWeather) {
+                case 'clear':
+                    imgUrl = 'https://images.unsplash.com/photo-1605722243979-fe0be8158232?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80';
+                    break;
+                case 'clouds':
+                    imgUrl = 'https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1476&q=80';
+                    break;
+                case 'rain':
+                    imgUrl = 'https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80';
+                    break;
+                case 'thunderstorm':
+                    imgUrl = 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80';
+                    break;
+                case 'snow':
+                    imgUrl = 'https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1476&q=80';
+                    break;
+                default:
+                    imgUrl = 'https://images.unsplash.com/photo-1605722243979-fe0be8158232?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80';
             }
 
-            themeToggle.addEventListener('click', () => {
-                let theme;
-                if (document.body.getAttribute('data-theme') === 'light') {
-                    document.body.setAttribute('data-theme', 'dark');
-                    themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-                    theme = 'dark';
-                } else {
-                    document.body.setAttribute('data-theme', 'light');
-                    themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-                    theme = 'light';
+            weatherImgContainer.innerHTML = `<img src="${imgUrl}" alt="Weather ${randomWeather}" style="width:100%;height:100%;object-fit:cover;">`;
+        }
+
+        updateWeatherImage();
+
+        // Animate sections on scroll
+        function animateSections() {
+            const sections = document.querySelectorAll('section');
+            const windowHeight = window.innerHeight;
+            const triggerPoint = windowHeight / 5 * 4;
+
+            sections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+
+                if (sectionTop < triggerPoint) {
+                    section.classList.add('visible');
                 }
-                localStorage.setItem('theme', theme);
             });
+        }
 
-            // Dynamic weather image for weather project
-            function updateWeatherImage() {
-                const weatherImgContainer = document.getElementById('weather-project-img');
-                const weatherTypes = ['clear', 'clouds', 'rain', 'thunderstorm', 'snow'];
-                const randomWeather = weatherTypes[Math.floor(Math.random() * weatherTypes.length)];
+        window.addEventListener('scroll', animateSections);
+        animateSections(); // Run on load
 
-                let imgUrl;
-                switch(randomWeather) {
-                    case 'clear':
-                        imgUrl = 'https://images.unsplash.com/photo-1605722243979-fe0be8158232?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80';
-                        break;
-                    case 'clouds':
-                        imgUrl = 'https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1476&q=80';
-                        break;
-                    case 'rain':
-                        imgUrl = 'https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80';
-                        break;
-                    case 'thunderstorm':
-                        imgUrl = 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80';
-                        break;
-                    case 'snow':
-                        imgUrl = 'https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1476&q=80';
-                        break;
-                    default:
-                        imgUrl = 'https://images.unsplash.com/photo-1605722243979-fe0be8158232?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80';
-                }
+        // Text rotation animation
+        function rotateText() {
+            const textElements = document.querySelectorAll('.rotating-text');
+            let currentIndex = 0;
+            
+            // Initially show first element
+            textElements[currentIndex].classList.add('active');
+            
+            // Set interval for rotation
+            const rotationInterval = setInterval(() => {
+                // Get current and next indices
+                const nextIndex = (currentIndex + 1) % textElements.length;
+                
+                // Animate out current element
+                textElements[currentIndex].classList.remove('active');
+                textElements[currentIndex].classList.add('inactive');
+                
+                // After animation completes, reset and animate in next element
+                setTimeout(() => {
+                    textElements[currentIndex].classList.remove('inactive');
+                    textElements[nextIndex].classList.add('active');
+                    currentIndex = nextIndex;
+                }, 800); // Match this with CSS transition duration
+            }, 5000); // Total time per message (including transition)
+        }
 
-                weatherImgContainer.innerHTML = `<img src="${imgUrl}" alt="Weather ${randomWeather}" style="width:100%;height:100%;object-fit:cover;">`;
-            }
+        // Start text rotation after page loads
+        window.addEventListener('load', () => {
+            setTimeout(rotateText, 2000); // Start after initial animations
+        });
 
-            updateWeatherImage();
+        function rotateRoles() {
+            const roles = [
+                "Frontend Developer",
+                "Web Designer", 
+                "Software Developer",
+                "Programmer"
+            ];
+            const roleElement = document.getElementById('role-title');
+            
+            // Clear any existing content
+            roleElement.innerHTML = '';
+            
+            // Create elements for each role
+            roles.forEach((role, index) => {
+                const span = document.createElement('span');
+                span.className = 'role-text';
+                span.textContent = role;
+                if (index === 0) span.classList.add('active');
+                roleElement.appendChild(span);
+            });
+            
+            const roleElements = document.querySelectorAll('.role-text');
+            let currentIndex = 0;
+            
+            // Start rotation after initial animation completes
+            setTimeout(() => {
+                setInterval(() => {
+                    // Fade out current
+                    roleElements[currentIndex].classList.remove('active');
+                    roleElements[currentIndex].classList.add('inactive');
+                    
+                    // Calculate next index
+                    currentIndex = (currentIndex + 1) % roles.length;
+                    
+                    // Fade in next
+                    setTimeout(() => {
+                        roleElements[currentIndex].classList.remove('inactive');
+                        roleElements[currentIndex].classList.add('active');
+                    }, 800); // Match this with CSS transition duration
+                }, 3000); // Change every 3 seconds
+            }, 2000); // Start after initial title animation
+        }
 
-            // Animate sections on scroll
-            function animateSections() {
-                const sections = document.querySelectorAll('section');
-                const windowHeight = window.innerHeight;
-                const triggerPoint = windowHeight / 5 * 4;
-
-                sections.forEach(section => {
-                    const sectionTop = section.getBoundingClientRect().top;
-
-                    if (sectionTop < triggerPoint) {
-                        section.classList.add('visible');
-                    }
-                });
-            }
-
-            window.addEventListener('scroll', animateSections);
-            animateSections(); // Run on load
-        </script>
-    </body>
+        // Call this on page load
+        window.addEventListener('load', () => {
+            setTimeout(rotateRoles, 500); // Small delay to ensure DOM is ready
+        });
+    </script>
+</body>
 </html>
